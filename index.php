@@ -1,31 +1,41 @@
-<!-- - è definita una classe ‘Movie’
-   => all'interno della classe sono dichiarate delle variabili d'istanza
-   => all'interno della classe è definito un costruttore
-   => all'interno della classe è definito almeno un metodo
-- vengono istanziati almeno due oggetti ‘Movie’ e stampati a schermo i valori delle relative proprietà -->
+<!-- Bonus 1:
+Modificare la classe Movie in modo che accetti piú di un genere.
+ -->
 
 <?php
 
-class Movie{
+class Movie {
      public $titolo;
-     public $genere;
+     public $generi;
      public $durata;
-
-     function __construct($_titolo, $_genere, $_durata){
-          $this->titolo = $_titolo;
-          $this->genere = $_genere;
-          $this->durata = $_durata;
+ 
+     public function __construct($_titolo, Generi $_generi, $_durata) {
+         $this->titolo = $_titolo;
+         $this->generi = $_generi;
+         $this->durata = $_durata;
      }
-
-     public function playMovie(){
-          echo "Play $this->titolo , genere: $this->genere , durata: $this->durata <br>";
+ 
+     public function playMovie() {
+          echo "Play " . $this->titolo . ". Genere: " . $this->generi->genere1 . ", " . $this->generi->genere2 . ", " . $this->generi->genere3 . ". Durata: " . $this->durata . "<br>";
+      }
+ }
+ 
+ class Generi {
+     public $genere1;
+     public $genere2;
+     public $genere3;
+ 
+     public function __construct($_genere1, $_genere2, $_genere3) {
+         $this->genere1 = $_genere1;
+         $this->genere2 = $_genere2;
+         $this->genere3 = $_genere3;
      }
-}
-
-$avatar = new Movie('Avatar', 'fantascienza, azione, avventura', '162 min');
-$avatar->playMovie();
-
-$killBill1 = new Movie('Kill Bill: volume 1', 'azione, grottesco, thriller', '111 min');
-$killBill1->playMovie();
+ }
+ 
+ $avatar = new Movie('Avatar', new Generi('fantascienza', 'azione', 'avventura'), '162 min');
+ $killBill1 = new Movie('Kill Bill: volume 1', new Generi('azione', 'grottesco', 'thriller'), '111 min');
+ 
+ $avatar->playMovie();
+ $killBill1->playMovie();
 
 ?>
